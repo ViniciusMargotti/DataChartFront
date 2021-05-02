@@ -1,0 +1,17 @@
+table {
+  width: 100%;
+}
+
+.mat-elevation-z8{
+  margin: 15px 150px;
+}
+
+mat-tab-group{
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .mat-elevation-z8{
+    margin: 5px 10px;
+  }
+}

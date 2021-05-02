@@ -1,0 +1,43 @@
+.example-form {
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.card-login {
+  margin-left: 30%;
+  margin-right: 30%;
+  padding-left: 60px;
+  padding-right: 60px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.button-login {
+  margin: 2px;
+}
+
+.full-width-2 {
+  width: 50%;
+}
+
+.full-width-3 {
+  width: 33%;
+}
+
+@media (max-width: 600px) {
+  .card-login {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .full-width-3 {
+    width: 100%;
+  }
+
+  .full-width-2 {
+    width: 100%;
+  }
+}

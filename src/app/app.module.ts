@@ -22,7 +22,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material';
+import {MatButtonModule, MatGridListModule} from '@angular/material';
 import { RegisterComponent } from './register/register.component';
 import {TextMaskModule} from 'angular2-text-mask';
 
@@ -37,28 +37,29 @@ import {TextMaskModule} from 'angular2-text-mask';
     LogoutComponent,
     RegisterComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatCardModule,
-    MatButtonModule,
-    MatButtonModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatTabsModule,
-    MatSortModule,
-    TextMaskModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatCardModule,
+        MatButtonModule,
+        MatButtonModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatSnackBarModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatTabsModule,
+        MatSortModule,
+        TextMaskModule,
+        MatGridListModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

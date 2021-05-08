@@ -1,41 +1,36 @@
 <mat-toolbar>
-  <img width="35" src="assets/img/logoteste.png"/>
+  <img width="75" src="assets/img/satclogo.png"/>
   <span class="example-spacer"></span>
   <button mat-button (click)="logout()">Sair</button>
 </mat-toolbar>
-  <mat-tab-group>
-    <mat-tab label="Usuários"></mat-tab>
-  </mat-tab-group>
-  <div class="mat-elevation-z8">
-    <table mat-table matSort [dataSource]="dataSource">
+<mat-tab-group>
+  <mat-tab label="Gráficos"></mat-tab>
 
-      <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef> Nome</th>
-        <td mat-cell *matCellDef="let element"> {{element.pessoa.nome}} </td>
-      </ng-container>
+</mat-tab-group>
 
-      <ng-container matColumnDef="email">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef> Email</th>
-        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-      </ng-container>
 
-      <ng-container matColumnDef="endereco">
-        <th mat-header-cell *matHeaderCellDef> Endereço</th>
-        <td mat-cell *matCellDef="let element"> {{element.pessoa.endereco}} </td>
-      </ng-container>
+<mat-card>
+<mat-grid-list cols="2" rowHeight="2:1">
 
-      <ng-container matColumnDef="numero">
-        <th mat-header-cell *matHeaderCellDef> Número</th>
-        <td mat-cell *matCellDef="let element"> {{element.pessoa.numero}} </td>
-      </ng-container>
+  <mat-grid-tile>
+    <mat-card style="width: 90%">
+    <canvas id="lineChart"></canvas>
+    </mat-card>
+  </mat-grid-tile>
 
-      <ng-container matColumnDef="CEP">
-        <th mat-header-cell *matHeaderCellDef> CEP</th>
-        <td mat-cell *matCellDef="let element"> {{element.pessoa.cep}} </td>
-      </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-  </div>
+  <mat-grid-tile>
+    <mat-card style="width: 90%">
+    <canvas id="pieChart"></canvas>
+    </mat-card>
+  </mat-grid-tile>
+
+
+  <mat-grid-tile>
+    <mat-card style="width: 90%">
+      <canvas id="barChart"></canvas>
+    </mat-card>
+  </mat-grid-tile>
+
+</mat-grid-list>
+</mat-card>

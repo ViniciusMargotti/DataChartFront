@@ -1,6 +1,11 @@
 table {
   width: 100%;
 }
+.grafico{
+  width: 45%;
+  padding: 30px;
+  margin: 10px;
+}
 
 .mat-elevation-z8{
   margin: 15px 150px;

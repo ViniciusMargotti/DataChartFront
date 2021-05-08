@@ -1,10 +1,10 @@
-<mat-card class="card-login">
+<mat-card  layout-align="center center" class="card-login">
   <form (ngSubmit)="checkLogin()" class="example-form">
-    <img width="100px" layout-align="center center" src="../../assets/img/logoteste.png">
+    <img width="250px"  src="../../assets/img/satclogo.png">
     <mat-form-field class="example-full-width">
       <mat-label>Email</mat-label>
-      <input [(ngModel)]="username" matInput [formControl]="emailInput"
-             placeholder="Ex. AngularAuth@example.com" required>
+      <input autocomplete="off" [(ngModel)]="username" matInput [formControl]="emailInput"
+             placeholder="Ex. satc@example.com" required>
       <mat-hint> Nunca compartilharemos seu e-mail com mais ninguém.</mat-hint>
       <mat-error *ngIf="emailInput.hasError('email') && !emailInput.hasError('required')">
         Informe um email válido por favor.
@@ -15,7 +15,7 @@
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-      <input [formControl]="passwordInput" [(ngModel)]="password" matInput placeholder="Senha"
+      <input autocomplete="off" [formControl]="passwordInput" [(ngModel)]="password" matInput placeholder="Senha"
              [type]="hide ? 'password' : 'text'" required>
       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       <mat-hint *ngIf="!passwordInput.value">Informe sua senha</mat-hint>
@@ -25,8 +25,8 @@
     </mat-form-field>
     <br><br>
     <div style="text-align: right">
-      <button class="button-login" [routerLink]="'/register'" mat-raised-button color="primary">Não possui um login? Cadastrar-se</button>
       <button type="submit" class="button-login" mat-raised-button color="primary"> Entrar</button>
+      <button class="button-login" [routerLink]="'/register'" mat-raised-button color="primary">Não possui um login? Cadastrar-se</button>
     </div>
   </form>
 </mat-card>

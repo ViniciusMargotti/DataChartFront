@@ -5,6 +5,6 @@
 
 export const environment = {
   production: true,
-  baseUrl: 'https://loginseed.herokuapp.com',
-  baseApiUrl: 'https://angular-seed-login.herokuapp.com'
+  baseUrl: 'localhost:4200',
+  baseApiUrl: 'http://localhost:8090'
 };

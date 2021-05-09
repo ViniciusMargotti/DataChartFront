@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit, ErrorStateMatcher  {
     (this.loginservice.authenticate(this.username, this.password).subscribe(
       data => {
         this.loginservice.saveToken(data.token);
+        this.loginservice.saveUserId(data.UserId);
         this.router.navigate(['']);
         this.invalidLogin = false;
       },

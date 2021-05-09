@@ -14,6 +14,7 @@ export class AuthenticationService {
 
     interface Jtw {
       token: string;
+      UserId: number;
     }
 
     const request = {username, password};
@@ -38,6 +39,9 @@ export class AuthenticationService {
 
   saveToken(token) {
     sessionStorage.setItem('tokenAuth', token);
+  }
+  saveUserId(userId) {
+    sessionStorage.setItem('UserId', userId);
   }
 
 

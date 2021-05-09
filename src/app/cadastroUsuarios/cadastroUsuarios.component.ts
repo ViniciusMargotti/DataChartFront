@@ -1,11 +1,14 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {HttpClientService} from '../service/httpclient.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import {MatSort} from '@angular/material';
+import {MatDialog, MatSort} from '@angular/material';
 import {MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
 import {Chart} from 'chart.js';
+import {ModalCadastroComponent} from './modalcadastro/modal-cadastro/modal-cadastro.component';
+import {AuthenticationService} from '../service/authentication.service';
+import {GraficoService} from './grafico.service';
 
 @Component({
   selector: 'app-employee',
@@ -17,11 +20,15 @@ export class CadastroUsuariosComponent implements OnInit {
 
   constructor( private httpClientService: HttpClientService,
                private snackBar: MatSnackBar,
-               private router: Router) {}
+               private router: Router,
+               public dialog: MatDialog,
+               private graficoService: GraficoService) {}
 
   displayedColumns: string[] = ['nome', 'email', 'endereco', 'numero', 'CEP'];
   dataSource: MatTableDataSource<Usuario>;
   LineChart = [];
+  PieChart = [];
+  BarChart = [];
 
   @ViewChild(MatSort, {}) sort: MatSort;
   @ViewChild(MatPaginator, {}) paginator: MatPaginator;
@@ -162,4 +169,13 @@ export class CadastroUsuariosComponent implements OnInit {
 
 
   }
+
+
+  openDialog() {
+    this.dialog.open(ModalCadastroComponent, {
+      data: { }
+    });
+  }
 }
+
+

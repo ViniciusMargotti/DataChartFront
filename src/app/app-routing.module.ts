@@ -6,6 +6,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { AuthGaurdService } from './service/auth-gaurd.service';
 import {RegisterComponent} from './register/register.component';
 
+
 const routes: Routes = [
   { path: '', component: CadastroUsuariosComponent, canActivate: [AuthGaurdService] },
   { path: 'login', component: LoginComponent },

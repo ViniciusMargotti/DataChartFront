@@ -1,0 +1,63 @@
+<form (ngSubmit)="saveGrafico()">
+  <h2 mat-dialog-title>Cadastro de gráficos</h2>
+  <mat-dialog-content class="mat-typography">
+    <mat-form-field class="example-full-width">
+      <mat-label>Título</mat-label>
+      <input  (keyup)="generateGrafico()" name="label" autocomplete="off" [(ngModel)]="label" matInput
+             placeholder="Ex. Gráfico de lucro" required>
+    </mat-form-field>
+
+    <mat-form-field class="example-chip-list example-full-width">
+      <mat-label>Campos</mat-label>
+      <mat-chip-list #chipListCampo aria-label="Campos">
+        <mat-chip *ngFor="let label of labels" [selectable]="selectableCampo"
+                  [removable]="removableCampo" (removed)="removeCampo(label)">
+          {{label}}
+          <mat-icon matChipRemove *ngIf="removableCampo">cancel</mat-icon>
+        </mat-chip>
+        <input required  autocomplete="off" placeholder="Novo campo..."
+               [matChipInputFor]="chipListCampo"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodesCampo"
+               [matChipInputAddOnBlur]="addOnBlurCampo"
+               (matChipInputTokenEnd)="addCampo($event)">
+      </mat-chip-list>
+    </mat-form-field>
+
+
+    <mat-form-field class="example-chip-list example-full-width">
+      <mat-label>Valores</mat-label>
+      <mat-chip-list #chipListValor aria-label="Valores">
+        <mat-chip *ngFor="let valor of valores" [selectable]="selectableValor"
+                  [removable]="removableValor" (removed)="removeValor(valor)">
+          {{valor}}
+          <mat-icon matChipRemove *ngIf="removableValor">cancel</mat-icon>
+        </mat-chip>
+        <input required autocomplete="off" placeholder="Novo valor..."
+               [matChipInputFor]="chipListValor"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodesValor"
+               [matChipInputAddOnBlur]="addOnBlurValor"
+               (matChipInputTokenEnd)="addValor($event)">
+      </mat-chip-list>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input  (ngModelChange)="generateGrafico()"  name="cor" [formControl]="colorCtr"  required autocomplete="off" matInput placeholder="Cor do gráfico"
+             [ngxMatColorPicker]="picker" [disabled]="false">
+      <ngx-mat-color-toggle (change)="generateGrafico()" matSuffix [for]="picker"></ngx-mat-color-toggle>
+      <ngx-mat-color-picker #picker [color]="color" [touchUi]="touchUi"></ngx-mat-color-picker>
+    </mat-form-field>
+
+    <mat-label>Borda</mat-label>
+    <mat-slider (ngModelChange)="generateGrafico()" name="border" class="example-full-width" max="10" min="1" [(ngModel)]="border"
+                aria-label="unit(s)"></mat-slider>
+
+    <div>
+      <canvas id="lineChart2"></canvas>
+    </div>
+
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" type="submit" cdkFocusInitial>Salvar</button>
+  </mat-dialog-actions>
+</form>

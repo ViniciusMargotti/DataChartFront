@@ -22,9 +22,15 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule, MatGridListModule} from '@angular/material';
+import {MatButtonModule, MatChipsModule, MatGridListModule, MatSliderModule} from '@angular/material';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MAT_COLOR_FORMATS, NgxMatColorPickerModule, NGX_MAT_COLOR_FORMATS } from '@angular-material-components/color-picker';
+
+
 import { RegisterComponent } from './register/register.component';
+
 import {TextMaskModule} from 'angular2-text-mask';
+import { ModalCadastroComponent } from './cadastroUsuarios/modalcadastro/modal-cadastro/modal-cadastro.component';
 
 // @ts-ignore
 @NgModule({
@@ -35,7 +41,8 @@ import {TextMaskModule} from 'angular2-text-mask';
     FooterComponent,
     LoginComponent,
     LogoutComponent,
-    RegisterComponent
+    RegisterComponent,
+    ModalCadastroComponent
   ],
     imports: [
         BrowserModule,
@@ -57,10 +64,15 @@ import {TextMaskModule} from 'angular2-text-mask';
         MatPaginatorModule,
         MatTabsModule,
         MatSortModule,
+        MatDialogModule,
         TextMaskModule,
-        MatGridListModule
+        MatGridListModule,
+        MatChipsModule,
+        NgxMatColorPickerModule,
+        MatSliderModule
     ],
-  providers: [],
+  entryComponents: [ModalCadastroComponent],
+  providers: [{ provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

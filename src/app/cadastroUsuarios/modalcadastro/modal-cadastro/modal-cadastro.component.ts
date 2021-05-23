@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Chart} from 'chart.js';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent, MatSnackBar} from '@angular/material';
@@ -13,9 +13,12 @@ import {GraficoService} from '../../grafico.service';
 })
 export class ModalCadastroComponent implements OnInit {
 
-  constructor(private snackBar: MatSnackBar,
-              private graficoService: GraficoService,
-              public dialogRef: MatDialogRef<ModalCadastroComponent>) {
+
+  constructor( @Inject(MAT_DIALOG_DATA) public data,
+               private snackBar: MatSnackBar,
+               private graficoService: GraficoService,
+               public dialogRef: MatDialogRef<ModalCadastroComponent>,
+              ) {
   }
 
   readonly separatorKeysCodesCampo: number[] = [ENTER, COMMA];
@@ -38,15 +41,15 @@ export class ModalCadastroComponent implements OnInit {
   LineChart = [];
   PieChart = [];
   BarChart = [];
-  label = '';
-  labels = ['Janeiro', 'Fevereiro'];
-  valores = ['9', '7'];
+  label = this.data.titulo ? this.data.titulo : '';
+  color = this.data.cor ? this.data.cor : '';
+  labels = this.data.campos ? this.data.campos.split(',') : ['Janeiro', 'Fevereiro'];
+  valores = this.data.valores ? this.data.valores.split(',') : ['1', '5'];
   touchUi: false;
-  color: 'red';
-  type = 2;
+  type = this.data.tipoGrafico ? this.data.tipoGrafico : 1;
 
   colorCtr: AbstractControl = new FormControl(null);
-  border = 5;
+  border = this.data.borda ? this.data.borda : 5;
 
   ngOnInit() {
     this.generateGrafico();
@@ -172,7 +175,7 @@ export class ModalCadastroComponent implements OnInit {
     // tslint:disable-next-line:no-debugger
     debugger;
     const grafico: Grafico = {
-      id: null ,
+      id: this.data.id,
       cor: color,
       borda: this.border,
       valores: this.valores.toString(),

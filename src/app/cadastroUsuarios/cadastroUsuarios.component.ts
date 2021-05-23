@@ -24,7 +24,7 @@ export class CadastroUsuariosComponent implements OnInit {
               private graficoService: GraficoService) {
   }
 
-  displayedColumns: string[] = ['Título', 'Tipo'];
+  displayedColumns: string[] = ['Título', 'Tipo', 'action'];
   dataSource: MatTableDataSource<Grafico>;
   LineChart = [];
   PieChart = [];
@@ -157,9 +157,9 @@ export class CadastroUsuariosComponent implements OnInit {
     return color;
   }
 
-  openDialog() {
+  openDialog(grafico) {
     this.dialog.open(ModalCadastroComponent, {
-      data: {}
+      data: grafico
     }).afterClosed().subscribe(() => this.getGraficos());
     ;
   }

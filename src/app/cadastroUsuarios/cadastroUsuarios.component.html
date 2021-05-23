@@ -9,7 +9,7 @@
 
 
 <div style="padding: 20px" >
-  <button mat-raised-button (click)="openDialog()" color="primary" >Novo gráfico</button>
+  <button mat-raised-button (click)="openDialog({})" color="primary" >Novo gráfico</button>
 </div>
 
 
@@ -43,19 +43,28 @@
   <table mat-table [dataSource]="dataSource" >
 
     <!-- Name Column -->
-    <ng-container matColumnDef="Título">
+    <ng-container  matColumnDef="Título">
       <th mat-header-cell *matHeaderCellDef> Título </th>
-      <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
+      <td mat-cell *matCellDef="let element" style="width:40%"> {{element.titulo}} </td>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="Tipo">
-      <th mat-header-cell *matHeaderCellDef> Tipo </th>
-      <td mat-cell *matCellDef="let element"> {{element.tipoGrafico}} </td>
+      <th mat-header-cell *matHeaderCellDef> Tipos </th>
+      <td mat-cell *matCellDef="let element" style="width:30%"> {{element.tipoGrafico}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <tr><th mat-header-cell *matHeaderCellDef> Action </th></tr>
+      <tr>
+        <td mat-cell *matCellDef="let element"style="width:30%">
+          <button mat-icon-button color="primary" (click)="openDialog(element)" title="Edit Contact"><mat-icon>edit</mat-icon></button>
+        </td>
+      <tr>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row  *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
   <h4 style="text-align: center;margin-top: 20px;" *ngIf="!dataSource.data.length">Nenhum gráfico encontrado</h4>

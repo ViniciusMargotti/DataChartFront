@@ -18,14 +18,14 @@ import {GraficoService} from './grafico.service';
 
 export class CadastroUsuariosComponent implements OnInit {
 
-  constructor( private httpClientService: HttpClientService,
-               private snackBar: MatSnackBar,
-               private router: Router,
-               public dialog: MatDialog,
-               private graficoService: GraficoService) {}
+  constructor(private snackBar: MatSnackBar,
+              private router: Router,
+              public dialog: MatDialog,
+              private graficoService: GraficoService) {
+  }
 
-  displayedColumns: string[] = ['nome', 'email', 'endereco', 'numero', 'CEP'];
-  dataSource: MatTableDataSource<Usuario>;
+  displayedColumns: string[] = ['Título', 'Tipo'];
+  dataSource: MatTableDataSource<Grafico>;
   LineChart = [];
   PieChart = [];
   BarChart = [];
@@ -42,139 +42,126 @@ export class CadastroUsuariosComponent implements OnInit {
     this.router.navigate(['logout']);
   }
 
-  ngOnInit() {
-
-    this.httpClientService.getUsuarios().subscribe(
+  getGraficos() {
+    this.graficoService.getGraficos().subscribe(
       response => {
+        // tslint:disable-next-line:no-debugger
+        debugger;
         this.dataSource = new MatTableDataSource(response);
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-      } ,
+      },
     );
-
-
-    // Line chart:
-    this.LineChart = new Chart('lineChart', {
-      type: 'line',
-      data: {
-        labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        datasets: [{
-          label: 'Number of Items Sold in Months',
-          data: [9, 7 , 3, 5, 2, 10, 15, 16, 19, 3, 1, 9],
-          fill: false,
-          lineTension: 0.5,
-          borderColor: 'blue',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        title: {
-          text: 'Line Chart',
-          display: true
-        },
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
-    });
-
-    // Bar chart:
-    this.BarChart = new Chart('barChart', {
-      type: 'bar',
-      data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-          label: '# of Votes',
-          data: [9,7 , 3, 5, 2, 10],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        title:{
-          text:"Bar Chart",
-          display:true
-        },
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero:true
-            }
-          }]
-        }
-      }
-    });
-
-// pie chart:
-    this.PieChart = new Chart('pieChart', {
-      type: 'pie',
-      data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-          label: '# of Votes',
-          data: [9,7 , 3, 5, 2, 10],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        title:{
-          text:"Bar Chart",
-          display:true
-        },
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero:true
-            }
-          }]
-        }
-      }
-    });
-
-
-
   }
 
+  ngOnInit() {
+    this.getGraficos();
+    // Line chart:
+    //  this.LineChart = new Chart('lineChart', {
+    //   type: 'line',
+    //   data: {
+    //     labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    //     datasets: [{
+    //       label: 'Number of Items Sold in Months',
+    //       data: [9, 7, 3, 5, 2, 10, 15, 16, 19, 3, 1, 9],
+    //       fill: false,
+    //       lineTension: 0.5,
+    //       borderColor: 'blue',
+    //       borderWidth: 1
+    //     }]
+    //   },
+    //   options: {
+    //     title: {
+    //       text: 'Line Chart',
+    //       display: true
+    //     },
+    //     scales: {
+    //       yAxes: [{
+    //         ticks: {
+    //           beginAtZero: true
+    //         }
+    //       }]
+    //     }
+    //   }
+    // });
+
+    // Bar chart:
+    // this.BarChart = new Chart('barChart', {
+    //   type: 'bar',
+    //   data: {
+    //     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    //     datasets: [{
+    //       label: '# of Votes',
+    //       data: [9, 7, 3, 5, 2, 10],
+    //       backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+    //       borderWidth: 1
+    //     }]
+    //   },
+    //   options: {
+    //     title: {
+    //       text: 'Bar Chart',
+    //       display: true
+    //     },
+    //     scales: {
+    //       yAxes: [{
+    //         ticks: {
+    //           beginAtZero: true
+    //         }
+    //       }]
+    //     }
+    //   }
+    // });
+
+    // pie chart:
+//     this.PieChart = new Chart('pieChart', {
+//       type: 'pie',
+//       data: {
+//         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+//         datasets: [{
+//           label: '# of Votes',
+//           data: [9, 7, 3, 5, 2, 10],
+//           backgroundColor: [],
+//           borderColor: [],
+//           borderWidth: 1
+//         }]
+//       },
+//       options: {
+//         title: {
+//           text: 'Bar Chart',
+//           display: true
+//         },
+//         scales: {
+//           yAxes: [{
+//             ticks: {
+//               beginAtZero: true
+//             }
+//           }]
+//         }
+//       }
+//     });
+  }
+
+  setBackgroud() {
+    // @ts-ignore
+    this.PieChart.data.datasets[0].data.forEach(() => {
+      // @ts-ignore
+      this.PieChart.data.datasets[0].backgroundColor.push(this.getRandomColor());
+    });
+  }
+
+  getRandomColor() {
+
+    const letters = '0123456789ABCDEF'.split('');
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
 
   openDialog() {
     this.dialog.open(ModalCadastroComponent, {
-      data: { }
-    });
+      data: {}
+    }).afterClosed().subscribe(() => this.getGraficos());
+    ;
   }
 }
 

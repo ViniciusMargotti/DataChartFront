@@ -6,4 +6,5 @@ interface Grafico {
   cor: string;
   borda: number;
   idUsuario: number;
+  tipoGrafico: number;
 }

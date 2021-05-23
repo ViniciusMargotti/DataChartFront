@@ -1,6 +1,18 @@
 <form (ngSubmit)="saveGrafico()">
   <h2 mat-dialog-title>Cadastro de gráficos</h2>
   <mat-dialog-content class="mat-typography">
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo do gráfico</mat-label>
+      <mat-select   (selectionChange)="generateGrafico()" [(value)]="type" >
+        <mat-option *ngFor="let tipo of typesGrafico" [value]="tipo.value">
+          {{tipo.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
     <mat-form-field class="example-full-width">
       <mat-label>Título</mat-label>
       <input  (keyup)="generateGrafico()" name="label" autocomplete="off" [(ngModel)]="label" matInput
@@ -40,20 +52,30 @@
       </mat-chip-list>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field *ngIf="type == 1" class="example-full-width">
       <input  (ngModelChange)="generateGrafico()"  name="cor" [formControl]="colorCtr"  required autocomplete="off" matInput placeholder="Cor do gráfico"
              [ngxMatColorPicker]="picker" [disabled]="false">
       <ngx-mat-color-toggle (change)="generateGrafico()" matSuffix [for]="picker"></ngx-mat-color-toggle>
       <ngx-mat-color-picker #picker [color]="color" [touchUi]="touchUi"></ngx-mat-color-picker>
     </mat-form-field>
 
-    <mat-label>Borda</mat-label>
-    <mat-slider (ngModelChange)="generateGrafico()" name="border" class="example-full-width" max="10" min="1" [(ngModel)]="border"
+    <mat-label *ngIf="type==1" >Borda</mat-label>
+    <mat-slider *ngIf="type==1" (ngModelChange)="generateGrafico()" name="border" class="example-full-width" max="10" min="1" [(ngModel)]="border"
                 aria-label="unit(s)"></mat-slider>
 
     <div>
-      <canvas id="lineChart2"></canvas>
+    <div  *ngIf="type == 1">
+      <canvas id="lineChartCadastro"></canvas>
     </div>
+
+    <div *ngIf="type == 2">
+      <canvas id="barChartCadastro"></canvas>
+    </div>
+    <div *ngIf="type == 4">
+      <canvas id="pieChartCadastro"></canvas>
+    </div>
+    </div>
+
 
   </mat-dialog-content>
   <mat-dialog-actions align="end">

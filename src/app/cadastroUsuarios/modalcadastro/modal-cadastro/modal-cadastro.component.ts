@@ -5,6 +5,7 @@ import {MatChipInputEvent, MatSnackBar} from '@angular/material';
 import {AbstractControl, FormControl} from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {GraficoService} from '../../grafico.service';
+import canvasToImage from 'canvas-to-image';
 
 @Component({
   selector: 'app-modal-cadastro',
@@ -299,5 +300,18 @@ export class ModalCadastroComponent implements OnInit {
     return color;
   }
 
+  downloadAsImage(e, imageName = 'null') {
+
+    e.preventDefault();
+
+    const canvasEl = document.querySelector("[id*='Chart']");
+
+    canvasToImage(canvasEl, {
+      name: imageName,
+      type: 'png',
+      quality: 1
+    });
+
+  }
 
 }

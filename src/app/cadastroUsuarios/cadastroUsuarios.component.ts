@@ -45,8 +45,6 @@ export class CadastroUsuariosComponent implements OnInit {
   getGraficos() {
     this.graficoService.getGraficos().subscribe(
       response => {
-        // tslint:disable-next-line:no-debugger
-        debugger;
         this.dataSource = new MatTableDataSource(response);
       },
     );
@@ -162,6 +160,18 @@ export class CadastroUsuariosComponent implements OnInit {
       data: grafico
     }).afterClosed().subscribe(() => this.getGraficos());
     ;
+  }
+
+  deleteGrafico(grafico) {
+    this.graficoService.deleteGrafico(grafico).subscribe(() => {});
+    const index = this.dataSource.data.indexOf(grafico.id);
+    this.dataSource.data.splice(index, 1);
+    this.dataSource._updateChangeSubscription();
+    this.snackBar.open('Gráfico deletado com sucesso!', 'Ok', {
+      duration: 5000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    });
   }
 }
 

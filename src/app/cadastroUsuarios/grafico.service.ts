@@ -34,4 +34,14 @@ export class GraficoService {
 
     return this.httpClient.get<Grafico[]>(this.urlBaseApi + '/graficos/getAll/' + idUsuario, {headers});
   }
+
+  deleteGrafico(grafico): Observable<Grafico[]>  {
+    const user = sessionStorage.getItem('tokenAuth');
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', 'Bearer ' + user);
+    headers = headers.append('Accept', 'application/json');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+
+    return this.httpClient.post<Grafico[]>(this.urlBaseApi + '/graficos/delete', grafico, {headers});
+  }
 }

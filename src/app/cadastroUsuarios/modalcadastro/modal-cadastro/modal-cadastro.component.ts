@@ -172,8 +172,7 @@ export class ModalCadastroComponent implements OnInit {
     if ( this.type === 1 ) {
       color = this.colorCtr.value.hex;
     }
-    // tslint:disable-next-line:no-debugger
-    debugger;
+
     const grafico: Grafico = {
       id: this.data.id,
       cor: color,

@@ -51,15 +51,15 @@
     <!-- Weight Column -->
     <ng-container matColumnDef="Tipo">
       <th mat-header-cell *matHeaderCellDef> Tipos </th>
-      <td mat-cell *matCellDef="let element" style="width:30%"> {{element.tipoGrafico}} </td>
+      <td mat-cell *matCellDef="let element" style="width:30%"> {{getDescricaoGrafico(element.tipoGrafico)}} </td>
     </ng-container>
 
     <ng-container matColumnDef="action">
-      <tr><th mat-header-cell *matHeaderCellDef> Action </th></tr>
+      <tr><th mat-header-cell *matHeaderCellDef> Ações </th></tr>
       <tr>
         <td mat-cell *matCellDef="let element"style="width:30%">
-          <button mat-icon-button color="primary" (click)="openDialog(element)" title="Edit Graphic"><mat-icon>edit</mat-icon></button>
-          <button mat-icon-button color="primary" (click)="deleteGrafico(element)" title="Delete Graphic"><mat-icon>delete</mat-icon></button>
+          <button mat-icon-button color="primary" (click)="openDialog(element)" title="Editar gráfico"><mat-icon>edit</mat-icon></button>
+          <button mat-icon-button color="primary" (click)="deleteGrafico(element)" title="Deletar gráfico"><mat-icon>delete</mat-icon></button>
         </td>
       </tr>
     </ng-container>

@@ -42,6 +42,13 @@ export class CadastroUsuariosComponent implements OnInit {
     this.router.navigate(['logout']);
   }
 
+  getDescricaoGrafico(tipo) {
+     switch (tipo) {
+       case 0: return 'Linha';
+       case 2: return 'Barra';
+       case 4: return 'Pizza';
+     }
+  }
   getGraficos() {
     this.graficoService.getGraficos().subscribe(
       response => {

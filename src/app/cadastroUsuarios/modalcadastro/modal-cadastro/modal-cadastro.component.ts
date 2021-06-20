@@ -167,7 +167,7 @@ export class ModalCadastroComponent implements OnInit {
 
   saveGrafico() {
 
-    const idUsuario = sessionStorage.getItem('UserId');
+    const idUsuario =  sessionStorage.getItem('UserId');
 
     let color = '';
     if ( this.type === 1 ) {

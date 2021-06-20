@@ -166,13 +166,12 @@ export class CadastroUsuariosComponent implements OnInit {
     this.dialog.open(ModalCadastroComponent, {
       data: grafico
     }).afterClosed().subscribe(() => this.getGraficos());
-    ;
   }
 
   deleteGrafico(grafico) {
     this.graficoService.deleteGrafico(grafico).subscribe(() => {});
     const index = this.dataSource.data.indexOf(grafico.id);
-    this.dataSource.data.splice(index, 1);
+    this.dataSource.data.splice(index - 1, 1);
     this.dataSource._updateChangeSubscription();
     this.snackBar.open('Gráfico deletado com sucesso!', 'Ok', {
       duration: 5000,

@@ -6,6 +6,7 @@ import {AbstractControl, FormControl} from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {GraficoService} from '../../grafico.service';
 import canvasToImage from 'canvas-to-image';
+import {Color} from '@angular-material-components/color-picker';
 
 @Component({
   selector: 'app-modal-cadastro',
@@ -49,11 +50,11 @@ export class ModalCadastroComponent implements OnInit {
   touchUi: false;
   type = this.data.tipoGrafico ? this.data.tipoGrafico : 1;
 
-  colorCtr: AbstractControl = new FormControl(null);
+  colorCtr = new FormControl(this.data.id ? this.getCor() : null);
   border = this.data.borda ? this.data.borda : 5;
 
   ngOnInit() {
-    this.generateGrafico();
+     this.generateGrafico();
   }
 
   generateGrafico() {
@@ -67,7 +68,25 @@ export class ModalCadastroComponent implements OnInit {
       if (this.type === 4) {
         this.generatePie();
       }
+
     }, 100);
+  }
+  getCor() {
+    const temp = this.hexToRgb(this.data ? this.data.cor : '');
+    return  new Color(temp.r, temp.g, temp.b);
+  }
+
+  hexToRgb(hex) {
+    const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    hex = hex.replace(shorthandRegex, (m, r, g, b) => {
+      return r + r + g + g + b + b;
+    });
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
   }
 
   generateLine() {
@@ -169,6 +188,8 @@ export class ModalCadastroComponent implements OnInit {
 
     const idUsuario =  sessionStorage.getItem('UserId');
 
+    // tslint:disable-next-line:no-debugger
+    debugger;
     let color = '';
     if ( this.type === 1 ) {
       color = this.colorCtr.value.hex;

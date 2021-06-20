@@ -47,6 +47,7 @@ export class CadastroUsuariosComponent implements OnInit {
        case 0: return 'Linha';
        case 2: return 'Barra';
        case 4: return 'Pizza';
+       default: return 'Linha';
      }
   }
   getGraficos() {

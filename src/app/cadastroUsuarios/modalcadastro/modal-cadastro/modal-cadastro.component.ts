@@ -54,7 +54,7 @@ export class ModalCadastroComponent implements OnInit {
   border = this.data.borda ? this.data.borda : 5;
 
   ngOnInit() {
-     this.generateGrafico();
+      this.generateGrafico();
   }
 
   generateGrafico() {
@@ -72,8 +72,12 @@ export class ModalCadastroComponent implements OnInit {
     }, 100);
   }
   getCor() {
-    const temp = this.hexToRgb(this.data ? this.data.cor : '');
-    return  new Color(temp.r, temp.g, temp.b);
+    if (this.data && this.data.cor !== '') {
+      const temp = this.hexToRgb(this.data && this.data.cor !== '' ? this.data.cor : '');
+      return  new Color(temp.r, temp.g, temp.b);
+    } else {
+      return null;
+    }
   }
 
   hexToRgb(hex) {
